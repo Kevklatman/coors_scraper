@@ -29,7 +29,7 @@ for table_element in table_elements:
     except ValueError:
         print(f"Skipping table: {table_html}")
 
-# Connect to the SQLite database (it will create a new file if it doesn't exist)
+# ###Connect to the SQLite database (it will create a new file if it doesn't exist)
 conn = sqlite3.connect('baseball_data.db')
 
 # Create tables in the database to store the data
