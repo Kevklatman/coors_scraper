@@ -8,23 +8,23 @@ import sqlite3
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
-url = "https://baseballsavant.mlb.com/leaderboard/active-spin?year=2024_spin-based&min=50&hand=&sort=1&sortDir=asc"
+url = "https://baseballsavant.mlb.com/leaderboard/pitcher-arm-angles?season=2024&team=115&pitchHand=&min=q&sort=ascending"
 driver.get(url)
 
 time.sleep(5)
 
-table_elements = driver.find_elements(By.TAG_NAME, "table")
+table_elements = driver.find_elements(By.TAG_NAME, "svg")
 
 tables = []
 for table_element in table_elements:
-    table_html = table_element.get_attribute("outerHTML")
+    table_html = table_element.get_attribute("class")
     try:
         table_df = pd.read_html(table_html)[0]
         tables.append(table_df)
     except ValueError:
         print(f"Skipping table: {table_html}")
 
-conn = sqlite3.connect('baseball_data.db')
+conn = sqlite3.connect('baseball_angle.db')
 
 for i, table in enumerate(tables):
     table_name = f"table_{i+1}"

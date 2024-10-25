@@ -4,8 +4,21 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+selenium = "*"
+pandas = "*"
+webdriver-manager = "*"
+lxml = "*"
+html5lib = "*"
+beautifulsoup4 = "*"
 
 [dev-packages]
+pytest = "*"
+black = "*"
+flake8 = "*"
+ipykernel = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.9"
+
+[scripts]
+scrape = "python scraper.py"
